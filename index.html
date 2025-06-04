@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciao Rosaria! 馃惗馃挄</title>
+    <title>Ciao Rosaria!</title>
     <style>
         * {
             margin: 0;
@@ -368,8 +368,8 @@
     <div class="paw-prints" id="pawPrints"></div>
     
     <div class="container">
-        <h1 class="title">Ciao Rosaria! 馃惥</h1>
-        <p class="subtitle">Un tenero saluto! 馃挄</p>
+        <h1 class="title">Ciao Rosaria!</h1>
+        <p class="subtitle">Un tenero saluto!</p>
         
         <div class="puppy-container">
             <div class="puppy">
@@ -389,15 +389,15 @@
                     <div class="puppy-paw paw-left"></div>
                     <div class="puppy-paw paw-right"></div>
                 </div>
-                <div class="speech-bubble" id="greetingBubble">Ciao Rosaria! 馃挅</div>
+                <div class="speech-bubble" id="greetingBubble">Ciao Rosaria!</div>
             </div>
         </div>
         
         <div class="sweet-messages">
-            <div class="message">馃専 Cara Rosaria, il tuo sorriso illumina ogni giorno! 馃専</div>
-            <div class="message">馃惥 Lorenzo e te siete una squadra fantastica, piena d'amore! 馃挄</div>
-            <div class="message">馃寛 Ogni momento con voi 猫 speciale e prezioso! 馃寛</div>
-            <div class="message">馃挐 Tanti abbracci e baci da questo piccolo amico peloso! 馃惗</div>
+            <div class="message">Cara Rosaria, il tuo sorriso illumina ogni giorno!</div>
+            <div class="message">Lorenzo e te siete una squadra fantastica, piena d'amore!</div>
+            <div class="message">Ogni momento con voi e speciale e prezioso!</div>
+            <div class="message">Tanti abbracci e baci da questo piccolo amico peloso!</div>
         </div>
     </div>
 
@@ -408,13 +408,13 @@
             const hour = now.getHours();
             
             if (hour >= 6 && hour < 12) {
-                return "Buongiorno Rosaria! 鈽�锔�";
+                return "Buongiorno Rosaria!";
             } else if (hour >= 12 && hour < 18) {
-                return "Buon pomeriggio Rosaria! 馃尀";
+                return "Buon pomeriggio Rosaria!";
             } else if (hour >= 18 && hour < 22) {
-                return "Buonasera Rosaria! 馃寘";
+                return "Buonasera Rosaria!";
             } else {
-                return "Buonanotte Rosaria! 馃寵";
+                return "Buonanotte Rosaria!";
             }
         }
 
@@ -425,7 +425,7 @@
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
-            heart.innerHTML = Math.random() > 0.5 ? '馃' : '馃А';
+            heart.innerHTML = Math.random() > 0.5 ? '♥' : '♡';
             heart.style.left = Math.random() * 100 + '%';
             heart.style.animationDelay = Math.random() * 2 + 's';
             heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
@@ -440,7 +440,7 @@
         function createPawPrint() {
             const pawPrint = document.createElement('div');
             pawPrint.className = 'paw-print';
-            pawPrint.innerHTML = '馃惥';
+            pawPrint.innerHTML = '●';
             pawPrint.style.left = Math.random() * 100 + '%';
             pawPrint.style.top = Math.random() * 100 + '%';
             pawPrint.style.animationDelay = Math.random() * 3 + 's';
@@ -463,7 +463,7 @@
 
         // Aggiungi suoni di bacio al click (simulati con vibrazione su mobile)
         document.querySelector('.puppy').addEventListener('click', function() {
-            // Crea pi霉 cuoricini al click
+            // Crea più cuoricini al click
             for(let i = 0; i < 5; i++) {
                 setTimeout(createHeart, i * 100);
             }
