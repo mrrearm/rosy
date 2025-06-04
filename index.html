@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciao Rosaria! 馃惗馃挄</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #f5f0e8, #e6d7c3, #d4c4a8);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .puppy-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .puppy {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .puppy-head {
+            width: 120px;
+            height: 120px;
+            background: #c4a484;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .puppy-ears {
+            position: absolute;
+            top: -10px;
+        }
+
+        .ear {
+            width: 35px;
+            height: 50px;
+            background: #8B7355;
+            border-radius: 50px 50px 20px 20px;
+            position: absolute;
+            animation: wiggle 3s infinite;
+        }
+
+        .ear.left {
+            left: 15px;
+            transform: rotate(-15deg);
+        }
+
+        .ear.right {
+            right: 15px;
+            transform: rotate(15deg);
+        }
+
+        .puppy-eyes {
+            position: absolute;
+            top: 35px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .eye {
+            width: 15px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        .puppy-nose {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .puppy-mouth {
+            position: absolute;
+            top: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 15px;
+            border: 3px solid #000;
+            border-top: none;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .puppy-body {
+            width: 80px;
+            height: 60px;
+            background: #c4a484;
+            border-radius: 40px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .puppy-paw {
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background: #c4a484;
+            border-radius: 15px;
+            bottom: -35px;
+        }
+
+        .paw-left {
+            left: 15px;
+            animation: wave 2s infinite ease-in-out;
+        }
+
+        .paw-right {
+            right: 15px;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -80px;
+            right: -140px;
+            background: #f8f5f0;
+            padding: 15px 20px;
+            border-radius: 25px;
+            border: 2px solid #d4c4a8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 16px;
+            font-weight: bold;
+            color: #8b6f47;
+            white-space: nowrap;
+            animation: float 3s infinite ease-in-out;
+            z-index: 20;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid #f8f5f0;
+        }
+
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #d4a574;
+            animation: floatUp 4s infinite linear;
+        }
+
+        .paw-prints {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .paw-print {
+            position: absolute;
+            font-size: 30px;
+            color: rgba(196, 164, 132, 0.4);
+            animation: fadeInOut 6s infinite;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: #8b6f47;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #a08660;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sweet-messages {
+            max-width: 600px;
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(248, 245, 240, 0.8);
+            border-radius: 20px;
+            border: 2px solid #d4c4a8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #8b6f47;
+            margin: 15px 0;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInMessage 0.8s ease-in-out forwards;
+        }
+
+        .message:nth-child(1) { animation-delay: 0.5s; }
+        .message:nth-child(2) { animation-delay: 1s; }
+        .message:nth-child(3) { animation-delay: 1.5s; }
+        .message:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-30deg); }
+            75% { transform: rotate(30deg); }
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(-25deg); }
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .puppy {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .puppy-head {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .speech-bubble {
+                font-size: 12px;
+                padding: 8px 12px;
+                right: -110px;
+                top: -70px;
+            }
+            
+            .sweet-messages {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .speech-bubble {
+                right: -90px;
+                font-size: 10px;
+                top: -65px;
+            }
+            
+            .sweet-messages {
+                margin: 15px;
+                padding: 12px;
+            }
+            
+            .message {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+    <div class="paw-prints" id="pawPrints"></div>
+    
+    <div class="container">
+        <h1 class="title">Ciao Rosaria! 馃惥</h1>
+        <p class="subtitle">Un tenero saluto! 馃挄</p>
+        
+        <div class="puppy-container">
+            <div class="puppy">
+                <div class="puppy-head">
+                    <div class="puppy-ears">
+                        <div class="ear left"></div>
+                        <div class="ear right"></div>
+                    </div>
+                    <div class="puppy-eyes">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="puppy-nose"></div>
+                    <div class="puppy-mouth"></div>
+                </div>
+                <div class="puppy-body">
+                    <div class="puppy-paw paw-left"></div>
+                    <div class="puppy-paw paw-right"></div>
+                </div>
+                <div class="speech-bubble" id="greetingBubble">Ciao Rosaria! 馃挅</div>
+            </div>
+        </div>
+        
+        <div class="sweet-messages">
+            <div class="message">馃専 Cara Rosaria, il tuo sorriso illumina ogni giorno! 馃専</div>
+            <div class="message">馃惥 Lorenzo e te siete una squadra fantastica, piena d'amore! 馃挄</div>
+            <div class="message">馃寛 Ogni momento con voi 猫 speciale e prezioso! 馃寛</div>
+            <div class="message">馃挐 Tanti abbracci e baci da questo piccolo amico peloso! 馃惗</div>
+        </div>
+    </div>
+
+    <script>
+        // Funzione per ottenere il saluto in base all'orario
+        function getGreetingByTime() {
+            const now = new Date();
+            const hour = now.getHours();
+            
+            if (hour >= 6 && hour < 12) {
+                return "Buongiorno Rosaria! 鈽�锔�";
+            } else if (hour >= 12 && hour < 18) {
+                return "Buon pomeriggio Rosaria! 馃尀";
+            } else if (hour >= 18 && hour < 22) {
+                return "Buonasera Rosaria! 馃寘";
+            } else {
+                return "Buonanotte Rosaria! 馃寵";
+            }
+        }
+
+        // Aggiorna il saluto all'avvio
+        document.getElementById('greetingBubble').innerHTML = getGreetingByTime();
+
+        // Crea cuoricini che fluttuano
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = Math.random() > 0.5 ? '馃' : '馃А';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Crea impronte di zampette
+        function createPawPrint() {
+            const pawPrint = document.createElement('div');
+            pawPrint.className = 'paw-print';
+            pawPrint.innerHTML = '馃惥';
+            pawPrint.style.left = Math.random() * 100 + '%';
+            pawPrint.style.top = Math.random() * 100 + '%';
+            pawPrint.style.animationDelay = Math.random() * 3 + 's';
+            document.getElementById('pawPrints').appendChild(pawPrint);
+            
+            setTimeout(() => {
+                pawPrint.remove();
+            }, 6000);
+        }
+
+        // Genera elementi animati
+        setInterval(createHeart, 800);
+        setInterval(createPawPrint, 2000);
+
+        // Crea alcuni elementi iniziali
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 200);
+            setTimeout(createPawPrint, i * 400);
+        }
+
+        // Aggiungi suoni di bacio al click (simulati con vibrazione su mobile)
+        document.querySelector('.puppy').addEventListener('click', function() {
+            // Crea pi霉 cuoricini al click
+            for(let i = 0; i < 5; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+            
+            // Vibrazione su dispositivi mobili
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+        });
+    </script>
+</body>
+</html>
