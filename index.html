@@ -40,6 +40,9 @@
             height: 200px;
             position: relative;
             animation: bounce 2s infinite ease-in-out;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
         }
 
         .puppy-head {
@@ -50,30 +53,77 @@
             position: relative;
             margin: 0 auto 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid #a08660;
+            z-index: 2;
+        }
+
+        .puppy-cheeks {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff9bb3;
+            border-radius: 50%;
+            top: 55px;
+            opacity: 0.7;
+        }
+
+        .cheek-left {
+            left: 15px;
+        }
+
+        .cheek-right {
+            right: 15px;
+        }
+
+        .puppy-eyebrows {
+            position: absolute;
+            top: 25px;
+            width: 100%;
+        }
+
+        .eyebrow {
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: #8B7355;
+            border-radius: 2px;
+        }
+
+        .eyebrow-left {
+            left: 25px;
+            transform: rotate(-10deg);
+        }
+
+        .eyebrow-right {
+            right: 25px;
+            transform: rotate(10deg);
         }
 
         .puppy-ears {
             position: absolute;
-            top: -10px;
+            top: -15px;
+            width: 100%;
         }
 
         .ear {
-            width: 35px;
-            height: 50px;
+            width: 30px;
+            height: 45px;
             background: #8B7355;
-            border-radius: 50px 50px 20px 20px;
+            border-radius: 50px 50px 15px 15px;
             position: absolute;
             animation: wiggle 3s infinite;
+            border: 2px solid #a08660;
         }
 
         .ear.left {
-            left: 15px;
-            transform: rotate(-15deg);
+            left: 20px;
+            transform: rotate(-20deg);
         }
 
         .ear.right {
-            right: 15px;
-            transform: rotate(15deg);
+            right: 20px;
+            transform: rotate(20deg);
+            animation: wiggleRight 3s infinite;
         }
 
         .puppy-eyes {
@@ -91,6 +141,18 @@
             background: #000;
             border-radius: 50%;
             animation: blink 4s infinite;
+            position: relative;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
         }
 
         .puppy-nose {
@@ -98,8 +160,8 @@
             top: 60px;
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: #000;
             border-radius: 50%;
         }
@@ -109,11 +171,22 @@
             top: 75px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 15px;
-            border: 3px solid #000;
+            width: 25px;
+            height: 12px;
+            border: 2px solid #000;
             border-top: none;
-            border-radius: 0 0 30px 30px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .puppy-tongue {
+            position: absolute;
+            top: 82px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ff6b8a;
+            border-radius: 0 0 50% 50%;
         }
 
         .puppy-body {
@@ -123,6 +196,23 @@
             border-radius: 40px;
             margin: 0 auto;
             position: relative;
+            z-index: 1;
+            top: -20px;
+        }
+
+        .puppy-tail {
+            position: absolute;
+            width: 12px;
+            height: 60px;
+            background: #c4a484;
+            border-radius: 12px;
+            right: -10px;
+            top: -15px;
+            transform-origin: bottom center;
+            transform: rotate(20deg);
+            animation: wagTail 1s infinite ease-in-out;
+            border: 1px solid #a08660;
+            z-index: -1;
         }
 
         .puppy-paw {
@@ -131,16 +221,35 @@
             height: 40px;
             background: #c4a484;
             border-radius: 15px;
-            bottom: -35px;
+            z-index: 0;
+            border: 1px solid #a08660;
         }
 
-        .paw-left {
-            left: 15px;
+        .paw-front-left {
+            left: 10px;
+            top: 40px;
+            transform: rotate(5deg);
             animation: wave 2s infinite ease-in-out;
         }
 
-        .paw-right {
-            right: 15px;
+        .paw-front-right {
+            right: 10px;
+            top: 40px;
+            transform: rotate(-5deg);
+        }
+
+        .paw-back-left {
+            left: 5px;
+            top: 60px;
+            transform: rotate(10deg);
+            opacity: 0.9;
+        }
+
+        .paw-back-right {
+            right: 5px;
+            top: 60px;
+            transform: rotate(-10deg);
+            opacity: 0.9;
         }
 
         .speech-bubble {
@@ -183,23 +292,40 @@
         .heart {
             position: absolute;
             font-size: 20px;
-            color: #d4a574;
+            color: #ff6b8a;
             animation: floatUp 4s infinite linear;
-        }
-
-        .paw-prints {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             pointer-events: none;
-            z-index: 1;
         }
 
-        .paw-print {
+        .heart.click-heart {
+            animation: floatUpFast 1.5s ease-out forwards;
+            font-size: 24px;
+        }
+
+        .heart::before {
+            content: '';
             position: absolute;
-            font-size: 30px;
-            color: rgba(196, 164, 132, 0.4);
-            animation: fadeInOut 6s infinite;
+            width: 10px;
+            height: 16px;
+            background: #ff6b8a;
+            border-radius: 10px 10px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            left: 5px;
+            top: 0;
+        }
+
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 16px;
+            background: #ff6b8a;
+            border-radius: 10px 10px 0 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+            left: 0;
+            top: 0;
         }
 
         .title {
@@ -249,9 +375,9 @@
         }
 
         @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-30deg); }
-            75% { transform: rotate(30deg); }
+            0%, 100% { transform: rotate(5deg); }
+            25% { transform: rotate(-25deg); }
+            75% { transform: rotate(35deg); }
         }
 
         @keyframes fadeInMessage {
@@ -266,8 +392,13 @@
         }
 
         @keyframes wiggle {
-            0%, 100% { transform: rotate(-15deg); }
-            50% { transform: rotate(-25deg); }
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(-30deg); }
+        }
+
+        @keyframes wiggleRight {
+            0%, 100% { transform: rotate(20deg); }
+            50% { transform: rotate(30deg); }
         }
 
         @keyframes blink {
@@ -299,9 +430,25 @@
             }
         }
 
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        @keyframes floatUpFast {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-30px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(0);
+            }
+        }
+
+        @keyframes wagTail {
+            0%, 100% { transform: rotate(10deg); }
+            25% { transform: rotate(40deg); }
+            75% { transform: rotate(-20deg); }
         }
 
         @keyframes pulse {
@@ -365,7 +512,6 @@
 </head>
 <body>
     <div class="hearts-container" id="heartsContainer"></div>
-    <div class="paw-prints" id="pawPrints"></div>
     
     <div class="container">
         <h1 class="title">Ciao Rosaria!</h1>
@@ -374,6 +520,10 @@
         <div class="puppy-container">
             <div class="puppy">
                 <div class="puppy-head">
+                    <div class="puppy-eyebrows">
+                        <div class="eyebrow eyebrow-left"></div>
+                        <div class="eyebrow eyebrow-right"></div>
+                    </div>
                     <div class="puppy-ears">
                         <div class="ear left"></div>
                         <div class="ear right"></div>
@@ -382,12 +532,16 @@
                         <div class="eye"></div>
                         <div class="eye"></div>
                     </div>
+                    <div class="puppy-cheeks cheek-left"></div>
+                    <div class="puppy-cheeks cheek-right"></div>
                     <div class="puppy-nose"></div>
                     <div class="puppy-mouth"></div>
+                    <div class="puppy-tongue"></div>
                 </div>
                 <div class="puppy-body">
-                    <div class="puppy-paw paw-left"></div>
-                    <div class="puppy-paw paw-right"></div>
+                    <div class="puppy-tail"></div>
+                    <div class="puppy-paw paw-front-left"></div>
+                    <div class="puppy-paw paw-front-right"></div>
                 </div>
                 <div class="speech-bubble" id="greetingBubble">Ciao Rosaria!</div>
             </div>
@@ -396,10 +550,14 @@
         <div class="sweet-messages">
             <div class="message">Cara Rosaria, il tuo sorriso illumina ogni giorno!</div>
             <div class="message">Lorenzo e te siete una squadra fantastica, piena d'amore!</div>
-            <div class="message">Ogni momento con voi e speciale e prezioso!</div>
+            <div class="message">Ogni momento con voi è speciale e prezioso!</div>
             <div class="message">Tanti abbracci e baci da questo piccolo amico peloso!</div>
         </div>
     </div>
+
+    <audio id="kissSound" preload="auto">
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+    </audio>
 
     <script>
         // Funzione per ottenere il saluto in base all'orario
@@ -419,59 +577,68 @@
         }
 
         // Aggiorna il saluto all'avvio
-        document.getElementById('greetingBubble').innerHTML = getGreetingByTime();
+        document.getElementById('greetingBubble').textContent = getGreetingByTime();
+
+        // Audio del bacio
+        const kissSound = document.getElementById('kissSound');
 
         // Crea cuoricini che fluttuano
-        function createHeart() {
+        function createHeart(isClick = false) {
             const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = Math.random() > 0.5 ? '♥' : '♡';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.className = isClick ? 'heart click-heart' : 'heart';
+            
+            if (isClick) {
+                heart.style.left = (40 + Math.random() * 20) + '%';
+                heart.style.top = '40%';
+            } else {
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            }
+            
             document.getElementById('heartsContainer').appendChild(heart);
             
             setTimeout(() => {
                 heart.remove();
-            }, 6000);
+            }, isClick ? 1500 : 6000);
         }
 
-        // Crea impronte di zampette
-        function createPawPrint() {
-            const pawPrint = document.createElement('div');
-            pawPrint.className = 'paw-print';
-            pawPrint.innerHTML = '●';
-            pawPrint.style.left = Math.random() * 100 + '%';
-            pawPrint.style.top = Math.random() * 100 + '%';
-            pawPrint.style.animationDelay = Math.random() * 3 + 's';
-            document.getElementById('pawPrints').appendChild(pawPrint);
+        // Genera molti più cuori animati
+        setInterval(createHeart, 300); // Aumentato il numero di cuori riducendo l'intervallo
+
+        // Crea molti cuori iniziali
+        for(let i = 0; i < 15; i++) { // Aumentato il numero di cuori iniziali
+            setTimeout(createHeart, i * 100);
+        }
+
+        // Aggiungi messaggi al click
+        const clickMessages = ['Ti voglio bene!', 'Bau bau!', 'Ciao bella!', 'Sei unica!', 'Smack! 💋'];
+        let messageIndex = 0;
+        
+        document.querySelector('.puppy').addEventListener('click', function(e) {
+            e.preventDefault();
             
-            setTimeout(() => {
-                pawPrint.remove();
-            }, 6000);
-        }
-
-        // Genera elementi animati
-        setInterval(createHeart, 800);
-        setInterval(createPawPrint, 2000);
-
-        // Crea alcuni elementi iniziali
-        for(let i = 0; i < 5; i++) {
-            setTimeout(createHeart, i * 200);
-            setTimeout(createPawPrint, i * 400);
-        }
-
-        // Aggiungi suoni di bacio al click (simulati con vibrazione su mobile)
-        document.querySelector('.puppy').addEventListener('click', function() {
-            // Crea più cuoricini al click
-            for(let i = 0; i < 5; i++) {
-                setTimeout(createHeart, i * 100);
+            // Riproduci il suono del bacio
+            kissSound.currentTime = 0;
+            kissSound.play();
+            
+            const bubble = document.getElementById('greetingBubble');
+            bubble.textContent = clickMessages[messageIndex];
+            messageIndex = (messageIndex + 1) % clickMessages.length;
+            
+            // Crea molti più cuori al click
+            for(let i = 0; i < 15; i++) { // Aumentato il numero di cuori al click
+                setTimeout(() => createHeart(true), i * 50);
             }
             
-            // Vibrazione su dispositivi mobili
             if (navigator.vibrate) {
                 navigator.vibrate([100, 50, 100]);
             }
+        });
+
+        // Previene il menu contestuale su mobile
+        document.querySelector('.puppy').addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         });
     </script>
 </body>
